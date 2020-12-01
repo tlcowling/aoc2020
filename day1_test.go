@@ -1,8 +1,6 @@
 package aoc2020
 
 import (
-	"fmt"
-	"log"
 	"strconv"
 	"testing"
 )
@@ -41,15 +39,16 @@ func TestDayOneP1(t *testing.T) {
 		for j:=i+1;j<len(input); j++ {
 			first, err := strconv.Atoi(input[i])
 			if err != nil {
-				log.Fatalln(err)
+				t.Fatal(err)
 			}
 			next, err := strconv.Atoi(input[j])
 			if err != nil {
-				log.Fatalln(err)
+				t.Fatal(err)
 			}
 			if first+next == 2020 {
-				fmt.Println(first, next)
-				fmt.Println(first* next)
+				t.Log("Day 1 Part 1")
+				t.Log("Numbers:",first, next)
+				t.Log("Multiplied:", first * next)
 			}
 		}
 	}
@@ -73,19 +72,20 @@ func TestDayOneP2(t *testing.T) {
 			for k := j+2; k<len(input); k++ {
 				first, err := strconv.Atoi(input[i])
 				if err != nil {
-					log.Fatalln(err)
+					t.Fatal(err)
 				}
 				next, err := strconv.Atoi(input[j])
 				if err != nil {
-					log.Fatalln(err)
+					t.Fatal(err)
 				}
 				another, err := strconv.Atoi(input[k])
 				if err != nil {
-					log.Fatalln(err)
+					t.Fatal(err)
 				}
 				if first+next+another == 2020 {
-					fmt.Println(first, next, another)
-					fmt.Println(first * next * another)
+					t.Log("Day 1 Part 2")
+					t.Log("Numbers:",first, next, another)
+					t.Log("Multiplied:", first * next * another)
 				}
 			}
 		}
