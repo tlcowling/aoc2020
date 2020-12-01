@@ -4,6 +4,7 @@ import (
 	"strconv"
 	"testing"
 )
+
 /*
 --- Day 1: Report Repair ---
 
@@ -35,8 +36,8 @@ Of course, your expense report is much larger. Find the two entries that sum to 
 func TestDayOneP1(t *testing.T) {
 	input := ReadInputAsLines(1)
 
-	for i:=0;i<len(input)-1; i++ {
-		for j:=i+1;j<len(input); j++ {
+	for i := 0; i < len(input)-1; i++ {
+		for j := i + 1; j < len(input); j++ {
 			first, err := strconv.Atoi(input[i])
 			if err != nil {
 				t.Fatal(err)
@@ -47,8 +48,8 @@ func TestDayOneP1(t *testing.T) {
 			}
 			if first+next == 2020 {
 				t.Log("Day 1 Part 1")
-				t.Log("Numbers:",first, next)
-				t.Log("Multiplied:", first * next)
+				t.Log("Numbers:", first, next)
+				t.Log("Multiplied:", first*next)
 			}
 		}
 	}
@@ -63,13 +64,13 @@ Using the above example again, the three entries that sum to 2020 are 979, 366, 
 
 In your expense report, what is the product of the three entries that sum to 2020?
 
- */
+*/
 func TestDayOneP2(t *testing.T) {
 	input := ReadInputAsLines(1)
 
-	for i:=0;i<len(input)-2; i++ {
-		for j:=i+1;j<len(input)-1; j++ {
-			for k := j+2; k<len(input); k++ {
+	for i := 0; i < len(input)-2; i++ {
+		for j := i + 1; j < len(input)-1; j++ {
+			for k := j + 2; k < len(input); k++ {
 				first, err := strconv.Atoi(input[i])
 				if err != nil {
 					t.Fatal(err)
@@ -84,8 +85,8 @@ func TestDayOneP2(t *testing.T) {
 				}
 				if first+next+another == 2020 {
 					t.Log("Day 1 Part 2")
-					t.Log("Numbers:",first, next, another)
-					t.Log("Multiplied:", first * next * another)
+					t.Log("Numbers:", first, next, another)
+					t.Log("Multiplied:", first*next*another)
 				}
 			}
 		}
