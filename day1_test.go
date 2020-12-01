@@ -92,3 +92,32 @@ func TestDayOneP2(t *testing.T) {
 		}
 	}
 }
+
+/*
+Add optimisation for only needing to loop twice but with extra storage
+- store precalculated sums and products in hashmap (since after summing we would lose information about the product)
+- no point storing first number if sum greater than 2020
+*/
+func TestDayOnePart2Faster(t *testing.T) {
+	input := ReadInputAsLines(1)
+	inputInts := InputStringsToInts(input)
+	preCalculated := make(map[int]int)
+
+	for i := 0; i < len(input)-2; i++ {
+		for j := i + 1; j < len(input)-1; j++ {
+			if inputInts[i]+inputInts[j] <= 2020 {
+				preCalculated[inputInts[i]+inputInts[j]] = inputInts[i] * inputInts[j]
+			}
+		}
+	}
+
+	for preCalculatedSum, preCalculatedProduct := range preCalculated {
+		for _, inputInt := range inputInts {
+			if preCalculatedSum+inputInt == 2020 {
+				t.Log("Day 1 Part 2")
+				t.Log("Numbers:", preCalculatedSum, inputInt)
+				t.Log("Multiplied:", preCalculatedProduct*inputInt)
+			}
+		}
+	}
+}
