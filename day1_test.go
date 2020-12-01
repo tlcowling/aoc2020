@@ -1,7 +1,6 @@
 package aoc2020
 
 import (
-	"strconv"
 	"testing"
 )
 
@@ -35,21 +34,14 @@ Of course, your expense report is much larger. Find the two entries that sum to 
 */
 func TestDayOneP1(t *testing.T) {
 	input := ReadInputAsLines(1)
+	inputInts := InputStringsToInts(input)
 
-	for i := 0; i < len(input)-1; i++ {
-		for j := i + 1; j < len(input); j++ {
-			first, err := strconv.Atoi(input[i])
-			if err != nil {
-				t.Fatal(err)
-			}
-			next, err := strconv.Atoi(input[j])
-			if err != nil {
-				t.Fatal(err)
-			}
-			if first+next == 2020 {
+	for i := 0; i < len(inputInts)-1; i++ {
+		for j := i + 1; j < len(inputInts); j++ {
+			if inputInts[i]+inputInts[j] == 2020 {
 				t.Log("Day 1 Part 1")
-				t.Log("Numbers:", first, next)
-				t.Log("Multiplied:", first*next)
+				t.Log("Numbers:", inputInts[i], inputInts[j])
+				t.Log("Multiplied:", inputInts[i]*inputInts[j])
 			}
 		}
 	}
@@ -67,22 +59,15 @@ In your expense report, what is the product of the three entries that sum to 202
 */
 func TestDayOneP2(t *testing.T) {
 	input := ReadInputAsLines(1)
+	inputInts := InputStringsToInts(input)
 
-	for i := 0; i < len(input)-2; i++ {
-		for j := i + 1; j < len(input)-1; j++ {
-			for k := j + 2; k < len(input); k++ {
-				first, err := strconv.Atoi(input[i])
-				if err != nil {
-					t.Fatal(err)
-				}
-				next, err := strconv.Atoi(input[j])
-				if err != nil {
-					t.Fatal(err)
-				}
-				another, err := strconv.Atoi(input[k])
-				if err != nil {
-					t.Fatal(err)
-				}
+	for i := 0; i < len(inputInts)-2; i++ {
+		for j := i + 1; j < len(inputInts)-1; j++ {
+			for k := j + 2; k < len(inputInts); k++ {
+				first := inputInts[i]
+				next := inputInts[j]
+				another := inputInts[k]
+
 				if first+next+another == 2020 {
 					t.Log("Day 1 Part 2")
 					t.Log("Numbers:", first, next, another)
