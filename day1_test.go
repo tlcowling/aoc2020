@@ -102,6 +102,7 @@ func TestDayOnePart2Faster(t *testing.T) {
 				t.Log("Day 1 Part 2")
 				t.Log("Numbers:", preCalculatedSum, inputInt)
 				t.Log("Multiplied:", preCalculatedProduct*inputInt)
+				return
 			}
 		}
 	}
