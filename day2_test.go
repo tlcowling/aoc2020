@@ -75,10 +75,24 @@ func (p *Password) validWithPolicy(policy *PasswordPolicy) bool {
 
 func (p *Password) validWithSecondPolicy(policy *PasswordPolicy) bool {
 	password := strings.Split(p.data, "")
+	pos1 := policy.minCount - 1
+	pos2 := policy.maxCount - 1
 
-	pos1 := policy.minCount
-	pos2 := policy.maxCount
-	return password[pos1] == policy.character && password[pos2] == policy.character
+	// XOR
+	return (password[pos1] == policy.character || password[pos2] == policy.character) &&
+		((password[pos1] == policy.character) != (password[pos2] == policy.character))
+}
+
+func parsePasswordPolicy(rx *regexp.Regexp, line string) (*Password, *PasswordPolicy) {
+	submatch := rx.FindStringSubmatch(line)
+	min := submatch[1]
+	max := submatch[2]
+	char := submatch[3]
+	p, err := NewPasswordPolicy(min, max, char)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return &Password{data: submatch[4]}, p
 }
 
 func TestDayTwo(t *testing.T) {
@@ -87,16 +101,23 @@ func TestDayTwo(t *testing.T) {
 
 	validCount := 0
 	for _, line := range lines {
-		submatch := parseRegex.FindStringSubmatch(line)
-		min := submatch[1]
-		max := submatch[2]
-		char := submatch[3]
-		p, err := NewPasswordPolicy(min, max, char)
-		if err != nil {
-			log.Fatalln(err)
+		password, policy := parsePasswordPolicy(parseRegex, line)
+		if password.validWithPolicy(policy) {
+			validCount++
 		}
-		password := Password{data: submatch[4]}
-		if password.validWithPolicy(p) {
+	}
+
+	t.Log(validCount)
+}
+
+func TestDayTwoP2(t *testing.T) {
+	lines := ReadInputAsLines(2)
+	parseRegex := regexp.MustCompile(`(\d+)-(\d+) (\w+): (\w+)`)
+
+	validCount := 0
+	for _, line := range lines {
+		password, policy := parsePasswordPolicy(parseRegex, line)
+		if password.validWithSecondPolicy(policy) {
 			validCount++
 		}
 	}
