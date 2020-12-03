@@ -17,14 +17,14 @@ func TestDay3(t *testing.T) {
 	t.Log(a1*a2*a3*a4*a5)
 }
 
-func slopeCount(lines []string, right, left int) int {
+func slopeCount(lines []string, right, down int) int {
 	i:=0
 	j:=0
 	count := 0
 	height:= len(lines)
 	for i<height-1{
 		j+=right
-		i+=left
+		i+= down
 		line := lines[i]
 		points := strings.Split(line, "")
 		jpos := j % len(line)
