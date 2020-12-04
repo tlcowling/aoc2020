@@ -85,8 +85,8 @@ func TestDay4(t *testing.T) {
 		}
 
 	}
-	fmt.Println("valid passport count", validPassportCount)
-	fmt.Println("valid values count", validPassportValuesCount)
+	t.Log("valid passport count", validPassportCount)
+	t.Log("valid values count", validPassportValuesCount)
 }
 
 func hasExpectedKeys(passport map[string]string) bool {
