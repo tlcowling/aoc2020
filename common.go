@@ -29,3 +29,12 @@ func InputStringsToInts(input []string) []int {
 	}
 	return ints
 }
+
+func StringArrayContains(arr []string, str string) bool {
+	for _, a := range arr {
+		if a == str {
+			return true
+		}
+	}
+	return false
+}
