@@ -100,27 +100,17 @@ func TestDayTwo(t *testing.T) {
 	parseRegex := regexp.MustCompile(`(\d+)-(\d+) (\w+): (\w+)`)
 
 	validCount := 0
+	validAlternatePolicyCount := 0
 	for _, line := range lines {
 		password, policy := parsePasswordPolicy(parseRegex, line)
 		if password.validWithPolicy(policy) {
 			validCount++
 		}
-	}
-
-	t.Log(validCount)
-}
-
-func TestDayTwoP2(t *testing.T) {
-	lines := ReadInputAsLines(2)
-	parseRegex := regexp.MustCompile(`(\d+)-(\d+) (\w+): (\w+)`)
-
-	validCount := 0
-	for _, line := range lines {
-		password, policy := parsePasswordPolicy(parseRegex, line)
 		if password.validWithSecondPolicy(policy) {
-			validCount++
+			validAlternatePolicyCount++
 		}
 	}
 
 	t.Log(validCount)
+	t.Log(validAlternatePolicyCount)
 }
