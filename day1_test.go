@@ -84,13 +84,12 @@ Add optimisation for only needing to loop twice but with extra storage
 - no point storing first number if sum greater than 2020
 */
 func TestDay1(t *testing.T) {
-	input := adventutils.ReadInputAsLines("./inputs/day1.txt")
-	inputInts := adventutils.InputStringsToInts(input)
+	inputInts := adventutils.ReadInputAsInts("./inputs/day1.txt")
 	preCalculated := make(map[int]int)
 
 	p1Product := 0
-	for i := 0; i < len(input)-2; i++ {
-		for j := i + 1; j < len(input)-1; j++ {
+	for i := 0; i < len(inputInts)-2; i++ {
+		for j := i + 1; j < len(inputInts)-1; j++ {
 			if inputInts[i]+inputInts[j] == 2020 {
 				p1Product = inputInts[i] * inputInts[j]
 			}

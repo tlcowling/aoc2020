@@ -8,16 +8,24 @@ import (
 )
 
 func ReadInputAsLines(path string) []string {
-	all, err := ioutil.ReadFile(path)
+	return strings.Split(fileContents(path), "\n")
+}
+
+func fileContents(path string) string {
+	fileBytes, err := ioutil.ReadFile(path)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	contents := string(all)
+	contents := string(fileBytes)
 	contents = strings.TrimSpace(contents)
-	return strings.Split(contents, "\n")
+	return contents
 }
 
-func InputStringsToInts(input []string) []int {
+func ReadInputAsInts(path string) []int {
+	return inputStringsToInts(ReadInputAsLines(path))
+}
+
+func inputStringsToInts(input []string) []int {
 	ints := make([]int, len(input))
 	for i, str := range input {
 		atoi, err := strconv.Atoi(str)
