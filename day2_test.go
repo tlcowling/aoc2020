@@ -1,6 +1,7 @@
 package aoc2020
 
 import (
+	"github.com/tlcowling/adventutils"
 	"log"
 	"regexp"
 	"strconv"
@@ -96,7 +97,7 @@ func parsePasswordPolicy(rx *regexp.Regexp, line string) (*Password, *PasswordPo
 }
 
 func TestDay2(t *testing.T) {
-	lines := ReadInputAsLines(2)
+	lines := adventutils.ReadInputAsLines("./inputs/day2.txt")
 	parseRegex := regexp.MustCompile(`(\d+)-(\d+) (\w+): (\w+)`)
 
 	validCount := 0

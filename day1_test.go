@@ -1,6 +1,7 @@
 package aoc2020
 
 import (
+	"github.com/tlcowling/adventutils"
 	"testing"
 )
 
@@ -83,8 +84,8 @@ Add optimisation for only needing to loop twice but with extra storage
 - no point storing first number if sum greater than 2020
 */
 func TestDay1(t *testing.T) {
-	input := ReadInputAsLines(1)
-	inputInts := InputStringsToInts(input)
+	input := adventutils.ReadInputAsLines("./inputs/day1.txt")
+	inputInts := adventutils.InputStringsToInts(input)
 	preCalculated := make(map[int]int)
 
 	p1Product := 0

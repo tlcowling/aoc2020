@@ -1,12 +1,13 @@
 package aoc2020
 
 import (
+	"github.com/tlcowling/adventutils"
 	"strings"
 	"testing"
 )
 
 func TestDay3(t *testing.T) {
-	lines := ReadInputAsLines(3)
+	lines := adventutils.ReadInputAsLines("./inputs/day3.txt")
 
 	a1 := slopeCount(lines, 1, 1)
 	a2 := slopeCount(lines, 3, 1)

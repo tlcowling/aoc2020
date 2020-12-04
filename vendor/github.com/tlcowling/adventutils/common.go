@@ -1,15 +1,14 @@
-package aoc2020
+package adventutils
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"strconv"
 	"strings"
 )
 
-func ReadInputAsLines(day int) []string {
-	all, err := ioutil.ReadFile(fmt.Sprintf("./inputs/day%d.txt", day))
+func ReadInputAsLines(path string) []string {
+	all, err := ioutil.ReadFile(path)
 	if err != nil {
 		log.Fatalln(err)
 	}

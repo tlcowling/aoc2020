@@ -4,6 +4,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"github.com/tlcowling/adventutils"
 	"strconv"
 	"strings"
 	"testing"
@@ -57,7 +58,7 @@ Count the number of valid passports - those that have all required fields. Treat
 
 */
 func TestDay4(t *testing.T) {
-	lines := ReadInputAsLines(4)
+	lines := adventutils.ReadInputAsLines("./inputs/day4.txt")
 
 	validPassportCount := 0
 	validPassportValuesCount := 0
@@ -170,7 +171,7 @@ func hasValidFieldValues(passport map[string]string) bool {
 	}
 	eyeColor := passport["ecl"]
 
-	if !StringArrayContains(allowedEyeColors, eyeColor) {
+	if !adventutils.StringArrayContains(allowedEyeColors, eyeColor) {
 		//fmt.Println("invalid ecl", eyeColor)
 		return false
 	}
