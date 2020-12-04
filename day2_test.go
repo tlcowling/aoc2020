@@ -95,7 +95,7 @@ func parsePasswordPolicy(rx *regexp.Regexp, line string) (*Password, *PasswordPo
 	return &Password{data: submatch[4]}, p
 }
 
-func TestDayTwo(t *testing.T) {
+func TestDay2(t *testing.T) {
 	lines := ReadInputAsLines(2)
 	parseRegex := regexp.MustCompile(`(\d+)-(\d+) (\w+): (\w+)`)
 

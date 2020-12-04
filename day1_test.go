@@ -31,8 +31,8 @@ For example, suppose your expense report contained the following:
 In this list, the two entries that sum to 2020 are 1721 and 299. Multiplying them together produces 1721 * 299 = 514579, so the correct answer is 514579.
 
 Of course, your expense report is much larger. Find the two entries that sum to 2020; what do you get if you multiply them together?
-*/
-func TestDayOneP1(t *testing.T) {
+/* ORIGINAL
+func TestDay1(t *testing.T) {
 	input := ReadInputAsLines(1)
 	inputInts := InputStringsToInts(input)
 
@@ -47,7 +47,6 @@ func TestDayOneP1(t *testing.T) {
 	}
 }
 
-/*
 --- Part Two ---
 
 The Elves in accounting are thankful for your help; one of them even offers you a starfish coin they had left over from a past vacation. They offer you a second one if you can find three numbers in your expense report that meet the same criteria.
@@ -56,7 +55,6 @@ Using the above example again, the three entries that sum to 2020 are 979, 366, 
 
 In your expense report, what is the product of the three entries that sum to 2020?
 
-*/
 func TestDayOneP2(t *testing.T) {
 	input := ReadInputAsLines(1)
 	inputInts := InputStringsToInts(input)
@@ -77,31 +75,37 @@ func TestDayOneP2(t *testing.T) {
 		}
 	}
 }
+*/
 
 /*
 Add optimisation for only needing to loop twice but with extra storage
 - store precalculated sums and products in hashmap (since after summing we would lose information about the product)
 - no point storing first number if sum greater than 2020
 */
-func TestDayOnePart2Faster(t *testing.T) {
+func TestDay1(t *testing.T) {
 	input := ReadInputAsLines(1)
 	inputInts := InputStringsToInts(input)
 	preCalculated := make(map[int]int)
 
+	p1Product := 0
 	for i := 0; i < len(input)-2; i++ {
 		for j := i + 1; j < len(input)-1; j++ {
+			if inputInts[i]+inputInts[j] == 2020 {
+				p1Product = inputInts[i] * inputInts[j]
+			}
 			if inputInts[i]+inputInts[j] <= 2020 {
 				preCalculated[inputInts[i]+inputInts[j]] = inputInts[i] * inputInts[j]
 			}
 		}
 	}
 
+	t.Log(p1Product)
+
 	for preCalculatedSum, preCalculatedProduct := range preCalculated {
 		for _, inputInt := range inputInts {
 			if preCalculatedSum+inputInt == 2020 {
-				t.Log("Day 1 Part 2")
-				t.Log("Numbers:", preCalculatedSum, inputInt)
-				t.Log("Multiplied:", preCalculatedProduct*inputInt)
+				p2Product := preCalculatedProduct * inputInt
+				t.Log(p2Product)
 				return
 			}
 		}
