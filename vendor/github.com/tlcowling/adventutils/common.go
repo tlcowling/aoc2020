@@ -22,10 +22,10 @@ func fileContents(path string) string {
 }
 
 func ReadInputAsInts(path string) []int {
-	return inputStringsToInts(ReadInputAsLines(path))
+	return StringArrayToIntArray(ReadInputAsLines(path))
 }
 
-func inputStringsToInts(input []string) []int {
+func StringArrayToIntArray(input []string) []int {
 	ints := make([]int, len(input))
 	for i, str := range input {
 		atoi, err := strconv.Atoi(str)
