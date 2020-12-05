@@ -40,7 +40,7 @@ func TestDay5(t *testing.T) {
 			nextSeat := seatMap[calculateId(i+1, j+1)]
 			if previousSeat && nextSeat {
 				if !currentSeat {
-					t.Log(i, j, calculateId(i, j))
+					t.Log(calculateId(i, j))
 				}
 			}
 		}
