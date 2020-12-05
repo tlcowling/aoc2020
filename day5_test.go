@@ -10,13 +10,11 @@ func TestDay5(t *testing.T) {
 	lines := adventutils.ReadInputAsLines("./inputs/day5.txt")
 
 	seatMap := make(map[int]bool)
+	maxSeatId := 0
 
-	max := 0
 	for _, line := range lines {
-		rowMin := 0
-		rowMax := 127
-		colMin := 0
-		colMax := 7
+		rowMin, rowMax, colMin, colMax := 0, 127, 0, 7
+
 		tokens := strings.Split(line, "")
 		for _, rowData := range tokens[0 : len(tokens)-3] {
 			rowMin, rowMax = findPlace(rowData, rowMin, rowMax)
@@ -24,14 +22,14 @@ func TestDay5(t *testing.T) {
 		for _, colData := range tokens[len(tokens)-3:] {
 			colMin, colMax = findPlace(colData, colMin, colMax)
 		}
-		id := calculateId(rowMin, colMin)
-		if id > max {
-			max = id
+		seatId := calculateId(rowMin, colMin)
+		if seatId > maxSeatId {
+			maxSeatId = seatId
 		}
-		seatMap[id] = true
+		seatMap[seatId] = true
 	}
 
-	t.Log(max)
+	t.Log(maxSeatId)
 
 	for i := 0; i <= 127; i++ {
 		for j := 0; j <= 7; j++ {
