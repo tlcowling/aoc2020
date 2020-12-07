@@ -159,13 +159,6 @@ func TestDay7(t *testing.T) {
 
 	t.Log(pathCount)
 
-	lines2 := adventutils.ReadInputAsLines("./inputs/day7.txt")
-
-	g2 := NewGraph()
-	for _, line := range lines2 {
-		parseLine(g2, line)
-	}
-
-	bags := g2.TraverseAllPathsFromID(requiredDestination)
+	bags := g.TraverseAllPathsFromID(requiredDestination)
 	t.Log(bags - 1) // not counting the shiny bag itself
 }
