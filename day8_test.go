@@ -1,7 +1,6 @@
 package aoc2020
 
 import (
-	"github.com/stretchr/testify/assert"
 	"github.com/tlcowling/adventutils"
 
 	"log"
@@ -87,10 +86,18 @@ func parseInstruction(in string) (string, int) {
 
 func TestParseLine(t *testing.T) {
 	inst, i := parseInstruction("jmp +4")
-	assert.Equal(t, inst, "jmp")
-	assert.Equal(t, i, 4)
+	if i != 4 {
+		t.Error(i, "should be 4")
+	}
+	if inst != "jmp" {
+		t.Error(inst, "should be jmp")
+	}
 
 	inst, i = parseInstruction("acc -204")
-	assert.Equal(t, inst, "acc")
-	assert.Equal(t, i, -204)
+	if i != -204 {
+		t.Error(i, "should be-204")
+	}
+	if inst != "acc" {
+		t.Error(inst, "should be acc")
+	}
 }
