@@ -25,6 +25,24 @@ func ReadInputAsInts(path string) []int {
 	return StringArrayToIntArray(ReadInputAsLines(path))
 }
 
+func ParseCommaSeparatedIntsFromFile(path string) []int {
+	return ParseCommaSeparatedInts(fileContents(path))
+}
+
+func ParseCommaSeparatedInts(in string) []int {
+	in = strings.TrimSpace(in)
+	nums := strings.Split(in, ",")
+	ints := make([]int, len(nums))
+	for i, num := range nums {
+		numI, err := strconv.Atoi(num)
+		if err != nil {
+			log.Fatalln(err)
+		}
+		ints[i] = numI
+	}
+	return ints
+}
+
 func StringArrayToIntArray(input []string) []int {
 	ints := make([]int, len(input))
 	for i, str := range input {
@@ -44,4 +62,19 @@ func StringArrayContains(arr []string, str string) bool {
 		}
 	}
 	return false
+}
+
+func ArrayMinMax(arr []int) (int, int) {
+	min := arr[0]
+	max := arr[0]
+	for i := 0; i < len(arr); i++ {
+		el := arr[i]
+		if el < min {
+			min = el
+		}
+		if el >= max {
+			max = el
+		}
+	}
+	return min, max
 }

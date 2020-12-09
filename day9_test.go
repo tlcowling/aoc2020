@@ -34,7 +34,7 @@ func TestDay9(t *testing.T) {
 			sumFromI += lines[j]
 			sumNums = append(sumNums, lines[j])
 			if sumFromI == target {
-				min, max := arrayMinMax(sumNums)
+				min, max := adventutils.ArrayMinMax(sumNums)
 				t.Log(min + max)
 				return
 			}
@@ -53,18 +53,4 @@ func arrayContainsSumToN(arr []int, n int) bool {
 		}
 	}
 	return false
-}
-func arrayMinMax(arr []int) (int, int) {
-	min := arr[0]
-	max := arr[0]
-	for i := 0; i < len(arr); i++ {
-		el := arr[i]
-		if el < min {
-			min = el
-		}
-		if el >= max {
-			max = el
-		}
-	}
-	return min, max
 }
