@@ -41,6 +41,7 @@ func TestDay9(t *testing.T) {
 		}
 	}
 }
+
 func arrayContainsSumToN(arr []int, n int) bool {
 	for i := 0; i < len(arr); i++ {
 		for j := 0; j < len(arr); j++ {
