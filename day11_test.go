@@ -16,7 +16,7 @@ const (
 )
 
 func TestDay11(t *testing.T) {
-	ferryRows := adventutils.ReadInputAsLines("./inputs/day11.txt")
+	ferryRows := adventutils.ReadInputAsLines("./inputs/day11_test.txt")
 	seats := makeSeatGrid(ferryRows)
 	//printGrid(seats)
 
