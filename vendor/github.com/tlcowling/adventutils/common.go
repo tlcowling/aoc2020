@@ -64,7 +64,7 @@ func StringArrayContains(arr []string, str string) bool {
 	return false
 }
 
-func ArrayMinMax(arr []int) (int, int) {
+func IntArrayMinMax(arr []int) (int, int) {
 	min := arr[0]
 	max := arr[0]
 	for i := 0; i < len(arr); i++ {
@@ -77,4 +77,11 @@ func ArrayMinMax(arr []int) (int, int) {
 		}
 	}
 	return min, max
+}
+
+func AbsInt(in int) int {
+	if in < 0 {
+		return -in
+	}
+	return in
 }

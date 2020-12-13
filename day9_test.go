@@ -34,7 +34,7 @@ func TestDay9(t *testing.T) {
 			sumFromI += lines[j]
 			sumNums = append(sumNums, lines[j])
 			if sumFromI == target {
-				min, max := adventutils.ArrayMinMax(sumNums)
+				min, max := adventutils.IntArrayMinMax(sumNums)
 				t.Log(min + max)
 				return
 			}
